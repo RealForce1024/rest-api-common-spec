@@ -1,4 +1,4 @@
-package com.realforce1024.restspec.filter;
+package com.realforce1024.restspec.common.filter;
 
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
