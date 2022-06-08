@@ -19,6 +19,7 @@ public class HelloWorldController {
      */
     @GetMapping("/retString")
     public String sayHello(String username) {
+        log.info("username: {}", username);
         return username;
     }
 
