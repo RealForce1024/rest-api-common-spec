@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.random.RandomGenerator;
 
 /**
- * @author RealForce1024
+ * @author 编程燃风 RealForce1024
  */
 @Data
 public class User {

@@ -3,7 +3,7 @@ package com.realforce1024.restspec.common.response;
 import lombok.Data;
 
 /**
- * @author RealForce1024
+ * @author 编程燃风 RealForce1024
  */
 @Deprecated
 @Data

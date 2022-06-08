@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @author RealForce1024
+ * @author 编程燃风 RealForce1024
  */
 @RestController
 @RequestMapping("/test")
