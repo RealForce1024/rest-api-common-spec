@@ -37,6 +37,7 @@ public class ResponseControllerAdvice implements ResponseBodyAdvice {
         // 方式2: 契合下StringHttpMessageConverter，封装ResultVO，然后将ResultVO进行Json字符串的转换
 
         ResultVO<Object> resultVO = ResultVO.ok(ResultCodeEnum.SUCCESS, body);
+        log.info("resultVO: {}", resultVO);
         if (body instanceof String) {
             log.info("String类型执行包装");
             return new ObjectMapper().writeValueAsString(resultVO);

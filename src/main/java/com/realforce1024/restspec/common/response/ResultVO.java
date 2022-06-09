@@ -1,9 +1,12 @@
 package com.realforce1024.restspec.common.response;
 
 import com.realforce1024.restspec.common.enums.CodeEnum;
+import com.realforce1024.restspec.common.request.RequestModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.UUID;
 
 /**
  * @author 编程燃风 RealForce1024
@@ -14,6 +17,7 @@ import lombok.NoArgsConstructor;
 public class ResultVO<T> {
     private String code;
     private String msg;
+    private String reqId;
     private T data;
 
     public static <T> ResultVO<T> ok(CodeEnum codeEnum, T data) {
@@ -25,6 +29,12 @@ public class ResultVO<T> {
     }
 
     private static <T> ResultVO<T> build(String code, String msg, T data) {
-        return new ResultVO<>(code, msg, data);
+        ResultVO<T> resultVO = new ResultVO<>();
+        resultVO.setCode(code);
+        resultVO.setMsg(msg);
+        resultVO.setData(data);
+        resultVO.setReqId(RequestModel.get().getReqId());
+        return resultVO;
     }
+
 }
