@@ -1,7 +1,6 @@
 package com.realforce1024.restspec.common.enums;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 
 /**
  * @author 编程燃风 RealForce1024

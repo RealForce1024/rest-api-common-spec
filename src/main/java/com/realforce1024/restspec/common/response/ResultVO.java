@@ -2,7 +2,6 @@ package com.realforce1024.restspec.common.response;
 
 import com.realforce1024.restspec.common.enums.CodeEnum;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -25,7 +24,7 @@ public class ResultVO<T> {
         return build(code, msg, data);
     }
 
-    public static <T> ResultVO<T> build(String code, String msg, T data) {
+    private static <T> ResultVO<T> build(String code, String msg, T data) {
         return new ResultVO<>(code, msg, data);
     }
 }
