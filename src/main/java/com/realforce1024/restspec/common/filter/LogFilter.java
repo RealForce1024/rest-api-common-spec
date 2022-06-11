@@ -9,6 +9,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.time.Instant;
 import java.util.UUID;
 
 /**
@@ -28,9 +29,12 @@ public class LogFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         String reqId = UUID.randomUUID().toString().replace("-", "");
+        Long startTime = Instant.now().toEpochMilli();
+        log.info("startTime: {}", startTime);
         log.info("filter reqId: {}", reqId);
         RequestModel requestModel = new RequestModel();
         requestModel.setReqId(reqId);
+        requestModel.setStartTime(startTime);
         // 特别注意，需要手动设置，否则会产生NPE
         RequestModel.setRequestModel(requestModel);
         chain.doFilter(request, response);

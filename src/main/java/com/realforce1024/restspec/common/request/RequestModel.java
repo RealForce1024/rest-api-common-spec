@@ -2,6 +2,7 @@ package com.realforce1024.restspec.common.request;
 
 import lombok.Data;
 
+import java.time.Instant;
 import java.util.UUID;
 
 /**
@@ -11,6 +12,7 @@ import java.util.UUID;
 public class RequestModel {
     private static final ThreadLocal<RequestModel> REQUEST_MODEL = new ThreadLocal<>();
     private String reqId = "ErrReqId:" + UUID.randomUUID().toString().replace("-", "");
+    private Long startTime = Instant.now().toEpochMilli();
 
     public static RequestModel get() {
         return REQUEST_MODEL.get() == null ? new RequestModel() : REQUEST_MODEL.get();
