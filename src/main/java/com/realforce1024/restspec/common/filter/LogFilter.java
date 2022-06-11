@@ -12,6 +12,9 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.time.Instant;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -35,6 +38,14 @@ public class LogFilter implements Filter {
         String requestURI = ((HttpServletRequest) request).getRequestURI();
         String httpMethod = ((HttpServletRequest) request).getMethod();
         String clientIp = request.getRemoteAddr();
+        Enumeration<String> parameterNames = request.getParameterNames();
+        Map<String, String> params = new HashMap<>();
+        while (parameterNames.hasMoreElements()) {
+            String name = parameterNames.nextElement();
+            params.put(name, request.getParameter(name));
+        }
+
+        log.info("GET请求参数: {}", params);
 
         MDC.put("req_id", reqId);
         MDC.put("req_uri", requestURI);

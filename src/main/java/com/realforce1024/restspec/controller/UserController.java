@@ -2,6 +2,7 @@ package com.realforce1024.restspec.controller;
 
 import com.realforce1024.restspec.common.annotation.NoResponseWrapper;
 import com.realforce1024.restspec.domain.User;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +14,7 @@ import java.util.List;
  * @author 编程燃风 RealForce1024
  */
 @RestController
+@Slf4j
 @RequestMapping("/users")
 public class UserController {
     @GetMapping
@@ -26,6 +28,7 @@ public class UserController {
     @GetMapping("/hi")
     public String sayHi(String username) {
         // int i = 1 / 0;
+        log.info("username: {}", username);
         return "hi: " + username;
     }
 
@@ -35,6 +38,7 @@ public class UserController {
         for (int i = 0; i < 100; i++) {
             list.add(new User());
         }
+        log.info("list: {}", list);
         return list;
     }
 }
