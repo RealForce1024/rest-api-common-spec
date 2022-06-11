@@ -2,3 +2,6 @@ spring:
   jackson:
     mapper:
       sort-creator-properties-first: true
+logging:
+  level:
+    root: debug

@@ -25,6 +25,7 @@ public class UserController {
     @NoResponseWrapper
     @GetMapping("/hi")
     public String sayHi(String username) {
+        int i = 1 / 0;
         return "hi: " + username;
     }
 
