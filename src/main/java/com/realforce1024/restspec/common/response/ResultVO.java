@@ -1,5 +1,6 @@
 package com.realforce1024.restspec.common.response;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.realforce1024.restspec.common.enums.CodeEnum;
 import com.realforce1024.restspec.common.request.RequestModel;
 import lombok.AllArgsConstructor;
@@ -14,13 +15,14 @@ import java.time.Instant;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonPropertyOrder({"code", "msg", "reqId", "utc8", "cost", "data"})
 public class ResultVO<T> {
     private String code;
     private String msg;
+    private T data;
+    private String reqId;
     private Long utc8;
     private Long cost;
-    private String reqId;
-    private T data;
 
     public static <T> ResultVO<T> ok(CodeEnum codeEnum, T data) {
         return ok(codeEnum.code(), codeEnum.msg(), data);
@@ -37,7 +39,7 @@ public class ResultVO<T> {
         resultVO.setData(data);
         Long endTime = Instant.now().toEpochMilli();
         resultVO.setUtc8(endTime);
-        resultVO.setCost(endTime-RequestModel.get().getStartTime());
+        resultVO.setCost(endTime - RequestModel.get().getStartTime());
         resultVO.setReqId(RequestModel.get().getReqId());
         return resultVO;
     }

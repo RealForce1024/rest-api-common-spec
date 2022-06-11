@@ -1,0 +1,4 @@
+spring:
+  jackson:
+    mapper:
+      sort-creator-properties-first: true

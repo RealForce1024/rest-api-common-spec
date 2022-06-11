@@ -5,6 +5,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author 编程燃风 RealForce1024
  */
@@ -21,5 +24,14 @@ public class UserController {
     @GetMapping("/hi")
     public String sayHi(String username) {
         return "hi: " + username;
+    }
+
+    @GetMapping("/all")
+    public List<User> getAll() {
+        ArrayList<User> list = new ArrayList<>();
+        for (int i = 0; i < 100; i++) {
+            list.add(new User());
+        }
+        return list;
     }
 }
