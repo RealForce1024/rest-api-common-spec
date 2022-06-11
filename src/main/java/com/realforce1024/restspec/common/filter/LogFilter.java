@@ -2,6 +2,7 @@ package com.realforce1024.restspec.common.filter;
 
 
 import com.realforce1024.restspec.common.request.RequestModel;
+import com.realforce1024.restspec.common.request.RequestWrapper;
 import com.realforce1024.restspec.common.utils.HttpUtils;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
@@ -54,7 +55,8 @@ public class LogFilter implements Filter {
 
         log.info("========================================== Start ==========================================");
         log.info("GET请求参数: {}", params);
-        log.info("Post请求参数: {}", HttpUtils.getPostData(request));
+        RequestWrapper requestWrapper = new RequestWrapper((HttpServletRequest) request);
+        log.info("Post请求参数: {}", HttpUtils.getPostData(requestWrapper));
 
         log.info("reqId: {},startTime: {},reqUri:{}", reqId, startTime, requestURI);
 
@@ -63,7 +65,7 @@ public class LogFilter implements Filter {
         requestModel.setStartTime(startTime);
         // 特别注意，需要手动设置，否则会产生NPE
         RequestModel.setRequestModel(requestModel);
-        chain.doFilter(request, response);
+        chain.doFilter(requestWrapper, response);
         log.info("=========================================== End ===========================================");
         log.info("");
         RequestModel.remove();

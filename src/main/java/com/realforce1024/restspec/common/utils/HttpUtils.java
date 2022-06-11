@@ -30,9 +30,8 @@ public class HttpUtils {
     @SneakyThrows
     public static String getPostData(ServletRequest request) {
         StringBuilder sb = new StringBuilder();
+        BufferedReader br = request.getReader();
 
-        ServletInputStream in = request.getInputStream();
-        BufferedReader br = new BufferedReader(new InputStreamReader(in));
         String temp;
         while ((temp = br.readLine()) != null) {
             sb.append(temp);
