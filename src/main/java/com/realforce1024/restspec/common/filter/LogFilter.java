@@ -66,6 +66,12 @@ public class LogFilter implements Filter {
         // 特别注意，需要手动设置，否则会产生NPE
         RequestModel.setRequestModel(requestModel);
         chain.doFilter(requestWrapper, response);
+
+        Long cost = RequestModel.get().getCost();
+        if (cost > 500) {
+            log.warn("响应时间超过500ms: {}", cost);
+        }
+
         log.info("=========================================== End ===========================================");
         log.info("");
         RequestModel.remove();

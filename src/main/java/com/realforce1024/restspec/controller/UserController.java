@@ -2,11 +2,13 @@ package com.realforce1024.restspec.controller;
 
 import com.realforce1024.restspec.common.annotation.NoResponseWrapper;
 import com.realforce1024.restspec.domain.User;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.random.RandomGenerator;
 
 /**
  * @author 编程燃风 RealForce1024
@@ -40,26 +42,13 @@ public class UserController {
         return list;
     }
 
+    @SneakyThrows
     @PostMapping
     public User addUser(@RequestBody User user) {
+        Thread.sleep(RandomGenerator.getDefault().nextInt(500, 600));
         log.info("user: {}", user);
         return user;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

@@ -39,7 +39,9 @@ public class ResultVO<T> {
         resultVO.setData(data);
         Long endTime = Instant.now().toEpochMilli();
         resultVO.setUtc8(endTime);
-        resultVO.setCost(endTime - RequestModel.get().getStartTime());
+        Long cost = endTime - RequestModel.get().getStartTime();
+        resultVO.setCost(cost);
+        RequestModel.get().setCost(cost);
         resultVO.setReqId(RequestModel.get().getReqId());
         return resultVO;
     }
