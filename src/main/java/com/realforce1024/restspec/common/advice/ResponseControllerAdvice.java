@@ -1,6 +1,7 @@
 package com.realforce1024.restspec.common.advice;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.realforce1024.restspec.common.annotation.NoResponseWrapper;
 import com.realforce1024.restspec.common.enums.ResultCodeEnum;
 import com.realforce1024.restspec.common.response.ResultVO;
 import lombok.SneakyThrows;
@@ -23,7 +24,7 @@ public class ResponseControllerAdvice implements ResponseBodyAdvice {
     @Override
     public boolean supports(MethodParameter returnType, Class converterType) {
         Class<?> type = returnType.getParameterType();
-        if (!type.equals(ResultVO.class) && !type.equals(File.class)) {
+        if (!type.equals(ResultVO.class) && !type.equals(File.class) && !returnType.hasMethodAnnotation(NoResponseWrapper.class)) {
             log.info("判断: 需要结果值封装");
             return true;
         }
