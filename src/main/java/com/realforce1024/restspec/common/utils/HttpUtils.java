@@ -1,5 +1,12 @@
 package com.realforce1024.restspec.common.utils;
 
+import jakarta.servlet.ServletInputStream;
+import jakarta.servlet.ServletRequest;
+import lombok.SneakyThrows;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,5 +25,19 @@ public class HttpUtils {
         map.put("username", "kobe");
         map.put("age", "24");
         System.out.println(assemble("/users", map));
+    }
+
+    @SneakyThrows
+    public static String getPostData(ServletRequest request) {
+        StringBuilder sb = new StringBuilder();
+
+        ServletInputStream in = request.getInputStream();
+        BufferedReader br = new BufferedReader(new InputStreamReader(in));
+        String temp;
+        while ((temp = br.readLine()) != null) {
+            sb.append(temp);
+        }
+
+        return sb.toString();
     }
 }

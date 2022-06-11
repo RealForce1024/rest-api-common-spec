@@ -54,6 +54,7 @@ public class LogFilter implements Filter {
 
         log.info("========================================== Start ==========================================");
         log.info("GET请求参数: {}", params);
+        log.info("Post请求参数: {}", HttpUtils.getPostData(request));
 
         log.info("reqId: {},startTime: {},reqUri:{}", reqId, startTime, requestURI);
 
