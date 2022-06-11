@@ -3,5 +3,4 @@ spring:
     mapper:
       sort-creator-properties-first: true
 logging:
-  level:
-    root: debug
+  config: classpath:log/log4j2.xml
