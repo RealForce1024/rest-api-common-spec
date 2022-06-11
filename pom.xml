@@ -16,6 +16,27 @@
     <properties>
         <java.version>17</java.version>
     </properties>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <profile.name>dev</profile.name>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>dev-local</id>
+            <properties>
+                <profile.name>dev-local</profile.name>
+            </properties>
+
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+    </profiles>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
