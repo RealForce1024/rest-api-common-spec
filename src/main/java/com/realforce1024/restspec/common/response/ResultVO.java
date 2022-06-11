@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.UUID;
+import java.time.Instant;
 
 /**
  * @author 编程燃风 RealForce1024
@@ -17,6 +17,7 @@ import java.util.UUID;
 public class ResultVO<T> {
     private String code;
     private String msg;
+    private Long utc8;
     private String reqId;
     private T data;
 
@@ -33,6 +34,7 @@ public class ResultVO<T> {
         resultVO.setCode(code);
         resultVO.setMsg(msg);
         resultVO.setData(data);
+        resultVO.setUtc8(Instant.now().toEpochMilli());
         resultVO.setReqId(RequestModel.get().getReqId());
         return resultVO;
     }
