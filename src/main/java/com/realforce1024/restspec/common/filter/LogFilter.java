@@ -65,6 +65,7 @@ public class LogFilter implements Filter {
         requestModel.setStartTime(startTime);
         // 特别注意，需要手动设置，否则会产生NPE
         RequestModel.setRequestModel(requestModel);
+        // int i = 1 / 0;
         chain.doFilter(requestWrapper, response);
 
         Long cost = RequestModel.get().getCost();

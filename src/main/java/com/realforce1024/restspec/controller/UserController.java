@@ -1,6 +1,6 @@
 package com.realforce1024.restspec.controller;
 
-import com.realforce1024.restspec.common.BizException;
+import com.realforce1024.restspec.common.exception.BizException;
 import com.realforce1024.restspec.common.annotation.NoResponseWrapper;
 import com.realforce1024.restspec.common.enums.ResultCodeEnum;
 import com.realforce1024.restspec.domain.User;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.random.RandomGenerator;
 
 /**
  * @author 编程燃风 RealForce1024

@@ -1,4 +1,4 @@
-package com.realforce1024.restspec.common;
+package com.realforce1024.restspec.common.exception;
 
 import com.realforce1024.restspec.common.enums.CodeEnum;
 import lombok.Data;
