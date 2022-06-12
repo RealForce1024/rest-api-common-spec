@@ -18,8 +18,8 @@ import java.util.random.RandomGenerator;
 @RequestMapping("/users")
 public class UserController {
     @GetMapping
-    public User findByUsername(String username) {
-        int i = 1 / 0;
+    public User findByUsername(@RequestParam String username) {
+        // int i = 1 / 0;
         User user = new User();
         user.setUsername(username);
         return user;

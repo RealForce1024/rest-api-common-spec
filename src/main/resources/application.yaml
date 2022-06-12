@@ -2,5 +2,10 @@ spring:
   jackson:
     mapper:
       sort-creator-properties-first: true
+  web:
+    resources:
+      add-mappings: false
+  mvc:
+    throw-exception-if-no-handler-found: true
 logging:
   config: classpath:log/log4j2.xml
