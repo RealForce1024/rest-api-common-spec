@@ -47,7 +47,7 @@
     <!--然后定义logger，只有定义了logger并引入appender，appender才会生效-->
     <loggers>
         <!--建立一个默认的root的logger-->
-        <Root level="info">
+        <Root level="debug">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="RollingFile"/>
         </Root>

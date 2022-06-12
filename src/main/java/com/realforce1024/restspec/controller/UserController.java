@@ -19,6 +19,7 @@ import java.util.random.RandomGenerator;
 public class UserController {
     @GetMapping
     public User findByUsername(String username) {
+        int i = 1 / 0;
         User user = new User();
         user.setUsername(username);
         return user;
