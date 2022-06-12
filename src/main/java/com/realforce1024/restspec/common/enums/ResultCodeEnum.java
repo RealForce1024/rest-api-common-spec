@@ -37,6 +37,10 @@ public enum ResultCodeEnum implements CodeEnum {
      */
     BAD_PARAMETER("4005", "请求参数缺失"),
     /**
+     * 用户名非法
+     */
+    NOT_ALLOWED_USERNAME("4006", "用户名非法"),
+    /**
      * 服务器异常
      */
     FAIL("5000", "服务器开小差"),

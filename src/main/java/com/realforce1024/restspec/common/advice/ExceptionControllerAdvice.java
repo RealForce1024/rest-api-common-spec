@@ -1,5 +1,6 @@
 package com.realforce1024.restspec.common.advice;
 
+import com.realforce1024.restspec.common.BizException;
 import com.realforce1024.restspec.common.enums.ResultCodeEnum;
 import com.realforce1024.restspec.common.response.ResultVO;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +26,12 @@ public class ExceptionControllerAdvice<T> {
         return ResultVO.fail(ResultCodeEnum.FAIL);
     }
 
+    @ExceptionHandler(BizException.class)
+    public ResultVO<T> handleBizException(BizException ex) {
+        log.warn("自定义业务异常: {}", ex.getMessage(), ex);
+        return ResultVO.fail(ex);
+    }
+
     @ExceptionHandler(ArithmeticException.class)
     public ResultVO<T> handleArithmeticException(ArithmeticException ex) {
         log.error("数学异常: {}", ex.getMessage(), ex);
@@ -33,31 +40,31 @@ public class ExceptionControllerAdvice<T> {
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     public ResultVO<T> handleHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException ex) {
-        log.error("请求方法不支持: {}", ex.getMessage(), ex);
+        log.warn("请求方法不支持: {}", ex.getMessage(), ex);
         return ResultVO.fail(ResultCodeEnum.BAD_METHOD, String.format(REASON, "请求方法不支持", ex.getMessage()));
     }
 
     @ExceptionHandler(HttpMediaTypeNotSupportedException.class)
     public ResultVO<T> handleHttpMediaTypeNotSupportedException(HttpMediaTypeNotSupportedException ex) {
-        log.error("请求媒体类型不支持: {}", ex.getMessage(), ex);
+        log.warn("请求媒体类型不支持: {}", ex.getMessage(), ex);
         return ResultVO.fail(ResultCodeEnum.BAD_MEDIA, String.format(REASON, "请求媒体不支持", ex.getMessage()));
     }
 
     @ExceptionHandler(NoHandlerFoundException.class)
     public ResultVO<T> handleNoHandlerFoundException(NoHandlerFoundException ex) {
-        log.error("请求路径不存在: {}", ex.getRequestURL(), ex);
+        log.warn("请求路径不存在: {}", ex.getRequestURL(), ex);
         return ResultVO.fail(ResultCodeEnum.BAD_PATH, String.format(REASON, "请求路径不存在", ex.getRequestURL()));
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResultVO<T> handleHttpMessageNotReadableException(HttpMessageNotReadableException ex) {
-        log.error("请求body参数不可读: {}", ex.getMessage(), ex);
+        log.warn("请求body参数不可读: {}", ex.getMessage(), ex);
         return ResultVO.fail(ResultCodeEnum.BAD_BODY, String.format(REASON, "请求body参数不可读", ex.getMessage()));
     }
 
     @ExceptionHandler(MissingServletRequestParameterException.class)
     public ResultVO<T> handleMissingServletRequestParameterException(MissingServletRequestParameterException ex) {
-        log.error("请求参数{}缺失: ", ex.getParameterName(), ex);
+        log.warn("请求参数{}缺失: ", ex.getParameterName(), ex);
         return ResultVO.fail(ResultCodeEnum.BAD_PARAMETER, String.format(REASON, "请求参数缺失", ex.getParameterName()));
     }
 
