@@ -24,6 +24,14 @@ public class ResultVO<T> {
     private Long utc8;
     private Long cost;
 
+    public static <T> ResultVO<T> fail(CodeEnum codeEnum, String exMsg) {
+        return ok(codeEnum.code(), exMsg, null);
+    }
+
+    public static <T> ResultVO<T> fail(CodeEnum codeEnum) {
+        return ok(codeEnum, null);
+    }
+
     public static <T> ResultVO<T> ok(CodeEnum codeEnum, T data) {
         return ok(codeEnum.code(), codeEnum.msg(), data);
     }

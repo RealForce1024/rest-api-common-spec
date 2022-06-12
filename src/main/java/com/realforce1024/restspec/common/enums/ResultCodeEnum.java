@@ -13,6 +13,10 @@ public enum ResultCodeEnum implements CodeEnum {
      */
     SUCCESS("1000", "成功"),
     /**
+     * 数学异常
+     */
+    MATH_ERROR("5100", "数学错误"),
+    /**
      * 服务器异常
      */
     FAIL("5000", "服务器开小差"),
