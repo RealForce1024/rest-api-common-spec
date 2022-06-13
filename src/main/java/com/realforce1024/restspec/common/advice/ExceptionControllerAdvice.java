@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -69,6 +70,13 @@ public class ExceptionControllerAdvice<T> {
     public ResultVO<T> handleMissingServletRequestParameterException(MissingServletRequestParameterException ex) {
         log.warn("请求参数{}缺失: ", ex.getParameterName(), ex);
         return ResultVO.fail(ResultCodeEnum.BAD_PARAMETER, String.format(REASON, "请求参数缺失", ex.getParameterName()));
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResultVO<T> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
+        log.warn("请求参数字段{}非法: 原因: {}", ex.getFieldError().getField(), ex.getMessage(), ex);
+        return ResultVO.fail(ResultCodeEnum.BAD_PARAMETER, String.format(REASON, "请求参数非法",
+                "字段[" + ex.getFieldError().getField() + "]" + ex.getFieldError().getDefaultMessage()));
     }
 
 }
