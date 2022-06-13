@@ -1,11 +1,12 @@
 package com.realforce1024.restspec.controller;
 
-import com.realforce1024.restspec.common.exception.BizException;
 import com.realforce1024.restspec.common.annotation.NoResponseWrapper;
 import com.realforce1024.restspec.common.enums.ResultCodeEnum;
+import com.realforce1024.restspec.common.exception.BizException;
 import com.realforce1024.restspec.domain.User;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -48,12 +49,15 @@ public class UserController {
     @SneakyThrows
     @PostMapping
     public User addUser(@RequestBody User user) {
+        // Assert.hasLength(user.getUsername(), "用户名不能为空");
+
         if (Objects.equals(user.getUsername(), "gdx")) {
             throw new BizException(ResultCodeEnum.NOT_ALLOWED_USERNAME);
         }
+
+
         log.info("user: {}", user);
         return user;
     }
-
 
 }
