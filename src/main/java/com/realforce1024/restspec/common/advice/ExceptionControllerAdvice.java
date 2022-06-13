@@ -74,6 +74,7 @@ public class ExceptionControllerAdvice<T> {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResultVO<T> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
+        log.info("非法字段数: {}",ex.getFieldErrorCount());
         log.warn("请求参数字段{}非法: 原因: {}", ex.getFieldError().getField(), ex.getMessage(), ex);
         return ResultVO.fail(ResultCodeEnum.BAD_PARAMETER, String.format(REASON, "请求参数非法",
                 "字段[" + ex.getFieldError().getField() + "]" + ex.getFieldError().getDefaultMessage()));
