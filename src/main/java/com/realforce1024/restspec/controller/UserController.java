@@ -1,20 +1,18 @@
 package com.realforce1024.restspec.controller;
 
 import com.realforce1024.restspec.common.annotation.NoResponseWrapper;
-import com.realforce1024.restspec.common.enums.ResultCodeEnum;
-import com.realforce1024.restspec.common.exception.BizException;
+import com.realforce1024.restspec.common.validator.A;
+import com.realforce1024.restspec.common.validator.ValidatorGroup;
 import com.realforce1024.restspec.domain.User;
 import com.realforce1024.restspec.dto.UserDTO;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
-import org.springframework.util.Assert;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * @author 编程燃风 RealForce1024
@@ -51,7 +49,7 @@ public class UserController {
 
     @SneakyThrows
     @PostMapping
-    public User addUser(@Validated @RequestBody UserDTO userDTO) {
+    public User addUser(@Validated(value = A.class) @RequestBody UserDTO userDTO) {
         // Assert.hasLength(user.getUsername(), "用户名不能为空");
 
         /*if (Objects.equals(user.getUsername(), "gdx")) {
@@ -64,4 +62,12 @@ public class UserController {
         return user;
     }
 
+    @SneakyThrows
+    @PostMapping("/query")
+    public User queryUser(@Validated @RequestBody UserDTO userDTO) {
+        User userDO = new User();
+        BeanUtils.copyProperties(userDTO, userDO);
+        log.info("接受参数: {}", userDTO);
+        return userDO;
+    }
 }
