@@ -2,7 +2,6 @@ package com.realforce1024.restspec.dto;
 
 import com.realforce1024.restspec.common.annotation.CheckUserName;
 import com.realforce1024.restspec.common.validator.A;
-import com.realforce1024.restspec.common.validator.ValidatorGroup;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;

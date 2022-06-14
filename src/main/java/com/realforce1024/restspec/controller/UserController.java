@@ -2,7 +2,6 @@ package com.realforce1024.restspec.controller;
 
 import com.realforce1024.restspec.common.annotation.NoResponseWrapper;
 import com.realforce1024.restspec.common.validator.A;
-import com.realforce1024.restspec.common.validator.ValidatorGroup;
 import com.realforce1024.restspec.domain.User;
 import com.realforce1024.restspec.dto.UserDTO;
 import lombok.SneakyThrows;
