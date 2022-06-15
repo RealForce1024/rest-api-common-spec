@@ -18,7 +18,7 @@ public class UserDTO {
     private Long id = RandomGenerator.getDefault().nextLong(1000, Long.MAX_VALUE);
     @NotBlank(message = "用户名不能为空")
     // @Pattern(regexp = "^((?!(gdx|奥利给)).)*", message = "名字内不能包含词组gdx或者奥利给")
-    @CheckUserName(groups = ValidatorGroup.CrudValidatorGroup.CreateGroup.class)
+    @CheckUserName(groups = ValidatorGroup.CrudGroup.Create.class)
     private String username;
     @Min(value = 0, message = "年龄必须>=0")
     private Integer age;

@@ -50,7 +50,7 @@ public class UserController {
     @SneakyThrows
     @PostMapping
     //public User addUser(@Validated(value = A.class) @RequestBody UserDTO userDTO) {
-    public User addUser(@Validated(value = ValidatorGroup.CrudValidatorGroup.CreateGroup.class)
+    public User addUser(@Validated(value = ValidatorGroup.CrudGroup.Create.class)
                         @RequestBody UserDTO userDTO) {
         // Assert.hasLength(user.getUsername(), "用户名不能为空");
 
@@ -67,7 +67,7 @@ public class UserController {
 
     @SneakyThrows
     @PutMapping
-    public User updateUser(@Validated(ValidatorGroup.CrudValidatorGroup.UpdateGroup.class) @RequestBody UserDTO userDTO) {
+    public User updateUser(@Validated(ValidatorGroup.CrudGroup.Update.class) @RequestBody UserDTO userDTO) {
         // Assert.hasLength(user.getUsername(), "用户名不能为空");
 
         /*if (Objects.equals(user.getUsername(), "gdx")) {
