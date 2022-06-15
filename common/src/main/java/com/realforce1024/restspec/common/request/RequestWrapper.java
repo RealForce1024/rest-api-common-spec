@@ -24,6 +24,7 @@ public class RequestWrapper extends HttpServletRequestWrapper {
     public RequestWrapper(HttpServletRequest request) {
         super(request);
         body = HttpUtils.getPostData(request);
+        request.setAttribute("body", body);
     }
 
     @Override

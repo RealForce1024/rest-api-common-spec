@@ -56,7 +56,7 @@ public class LogFilter implements Filter {
         log.info("========================================== Start ==========================================");
         log.info("GET请求参数: {}", params);
         RequestWrapper requestWrapper = new RequestWrapper((HttpServletRequest) request);
-        log.info("Post请求参数: {}", HttpUtils.getPostData(requestWrapper));
+        log.info("Post请求参数: {}", request.getAttribute("body"));
 
         log.info("reqId: {},startTime: {},reqUri:{}", reqId, startTime, requestURI);
 
