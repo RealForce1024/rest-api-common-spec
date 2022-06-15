@@ -2,6 +2,7 @@ package com.realforce1024.restspec.controller;
 
 import com.realforce1024.restspec.common.annotation.NoResponseWrapper;
 import com.realforce1024.restspec.common.validator.ValidatorGroup;
+import com.realforce1024.restspec.common.validator.A;
 import com.realforce1024.restspec.domain.User;
 import com.realforce1024.restspec.dto.UserDTO;
 import lombok.SneakyThrows;
@@ -48,6 +49,7 @@ public class UserController {
 
     @SneakyThrows
     @PostMapping
+    //public User addUser(@Validated(value = A.class) @RequestBody UserDTO userDTO) {
     public User addUser(@Validated(value = ValidatorGroup.CrudValidatorGroup.CreateGroup.class)
                         @RequestBody UserDTO userDTO) {
         // Assert.hasLength(user.getUsername(), "用户名不能为空");
@@ -78,4 +80,12 @@ public class UserController {
         return user;
     }
 
+    @SneakyThrows
+    @PostMapping("/query")
+    public User queryUser(@Validated @RequestBody UserDTO userDTO) {
+        User userDO = new User();
+        BeanUtils.copyProperties(userDTO, userDO);
+        log.info("接受参数: {}", userDTO);
+        return userDO;
+    }
 }
