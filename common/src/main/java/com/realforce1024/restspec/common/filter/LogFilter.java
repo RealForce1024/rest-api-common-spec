@@ -14,10 +14,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.time.Instant;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * @author 编程燃风 RealForce1024
@@ -35,6 +32,15 @@ public class LogFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        log.info("========================================== Start ==========================================");
+
+        if (shouldSkip(request)) {
+            // 不需要记录请求体和响应体 文件上传
+            log.info("不需要记录请求体和响应体");
+            chain.doFilter(request, response);
+            return;
+        }
+
         String reqId = UUID.randomUUID().toString().replace("-", "");
         Long startTime = Instant.now().toEpochMilli();
         String requestURI = ((HttpServletRequest) request).getRequestURI();
@@ -53,7 +59,6 @@ public class LogFilter implements Filter {
         MDC.put("http_method", httpMethod);
         MDC.put("client_ip", clientIp);
 
-        log.info("========================================== Start ==========================================");
         log.info("GET请求参数: {}", params);
         RequestWrapper requestWrapper = new RequestWrapper((HttpServletRequest) request);
         log.info("Post请求参数: {}", request.getAttribute("body"));
@@ -82,5 +87,28 @@ public class LogFilter implements Filter {
     @Override
     public void destroy() {
         Filter.super.destroy();
+    }
+
+    private boolean shouldSkip(ServletRequest request) {
+        String contentType = request.getContentType();
+        log.info("MIME类型 contentType: {}", contentType);
+        if (request instanceof HttpServletRequest) {
+            log.info("过滤multipart/form-data请求类型流消费与包装");
+            return contentType != null && contentType.contains("multipart/form-data");
+        }
+
+      /*  // 跳过文件上传接口
+        if (request.getRequestURI().contains("/upload")) {
+            return true;
+        }
+        // 跳过文件下载接口
+        if (request.getRequestURI().contains("/download")) {
+            return true;
+        }
+        // 跳过静态资源
+        if (request.getRequestURI().contains("/static")) {
+            return true;
+        }*/
+        return false;
     }
 }

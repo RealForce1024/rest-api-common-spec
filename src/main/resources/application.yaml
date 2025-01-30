@@ -9,3 +9,7 @@ spring:
     throw-exception-if-no-handler-found: true
 logging:
   config: classpath:log/log4j2.xml
+
+file:
+    upload:
+        url: /Users/fqc/Downloads/uploads
