@@ -55,7 +55,7 @@ public class ExceptionControllerAdvice<T> {
 
     @ExceptionHandler(NoHandlerFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ResultVO<T> handleNoHandlerFoundException(NoHandlerFoundException ex) {
+    public ResultVO<String> handleNoHandlerFoundException(NoHandlerFoundException ex) {
         log.warn("请求路径不存在: {}", ex.getRequestURL(), ex);
         return ResultVO.fail(ResultCodeEnum.BAD_PATH, String.format(REASON, "请求路径不存在", ex.getRequestURL()));
     }

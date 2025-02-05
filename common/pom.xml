@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.realforce1024</groupId>
-    <artifactId>rest-api-common-spec</artifactId>
+    <artifactId>common</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>common</name>
     <description>common</description>
@@ -55,7 +55,17 @@
     </dependencies>
 
     <build>
+
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${maven-resources-plugin.version}</version>
+                <configuration>
+                    <encoding>utf-8</encoding>
+                    <useDefaultDelimiters>true</useDefaultDelimiters>
+                </configuration>
+            </plugin>
             <!--生成源码插件-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -84,7 +94,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- jar等文件签名插件，用于生成asc签名文件 -->
+           <!-- &lt;!&ndash; jar等文件签名插件，用于生成asc签名文件 &ndash;&gt;
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
@@ -98,7 +108,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
         </plugins>
     </build>
     <distributionManagement>

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 import java.io.File;
+import java.util.Objects;
 
 /**
  * @author 编程燃风 RealForce1024
@@ -39,7 +40,7 @@ public class ResponseControllerAdvice implements ResponseBodyAdvice {
 
         ResultVO<Object> resultVO = ResultVO.ok(ResultCodeEnum.SUCCESS, body);
         log.info("resultVO: {}", resultVO);
-        if (body instanceof String) {
+        if (body instanceof String || Objects.isNull(body)) {
             log.info("String类型执行包装");
             return new ObjectMapper().writeValueAsString(resultVO);
         }
