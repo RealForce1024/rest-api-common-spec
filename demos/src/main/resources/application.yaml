@@ -1,0 +1,23 @@
+server:
+  port: 8080
+  error:
+    path: /error
+  servlet:
+    context-path: /base
+spring:
+  jackson:
+    mapper:
+      sort-creator-properties-first: true
+  web:
+    resources:
+      add-mappings: false
+#  mvc:
+#    throw-exception-if-no-handler-found: true
+  profiles:
+    active: dev
+logging:
+  config: classpath:log/log4j2.xml
+
+file:
+    upload:
+        url: /Users/fqc/Downloads/uploads
